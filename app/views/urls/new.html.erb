@@ -1,0 +1,23 @@
+<%= form_for @shortened_url do |form| %>  
+
+  <h1>Shorten a URL</h1>  
+
+  <% if flash[:shortened_id].present? %>  
+    <p class='shortened-link'>  
+      The shortened url is available <%= link_to 'here', url_url(flash[:shortened_id]) %>. (Right click and copy link to share it)  
+    </p>  
+  <% end %>
+
+  <p>  
+    <%= form.label :url, "Your URL:" %>  
+    <%= form.text_field :url %>  
+  </p>  
+  <% if @shortened_url.errors[:url].any? %>  
+    <p class='error-messages'>  
+      The given url <%= @shortened_url.errors[:url].to_sentence %>.  
+    </p>  
+  <% end %>  
+  <p class='buttons'>  
+    <%= form.submit "Shorten my URL" %>  
+  </p>  
+<% end %> 
